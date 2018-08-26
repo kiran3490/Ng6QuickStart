@@ -19,6 +19,9 @@ import { ThirdPageComponent } from './third-page/third-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { OverlayModule, OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
+import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
+import { CustomersListComponent } from './customers/customers-list/customers-list.component';
+import { CreateCustomerComponent } from './customers/create-customer/create-customer.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -35,7 +38,10 @@ const appRoutes: Routes = [
     SecondPageComponent,
     ThirdPageComponent,
     HomePageComponent,
-    MyTableComponent
+    MyTableComponent,
+    CustomerDetailsComponent,
+    CustomersListComponent,
+    CreateCustomerComponent
   ],
   imports: [
     BrowserModule,
