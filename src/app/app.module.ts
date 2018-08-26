@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,
-  MatGridListModule, MatCardModule, MatMenuModule, MatToolbarModule, MatSidenavModule, MatListModule
+  MatGridListModule, MatCardModule, MatMenuModule, MatToolbarModule, MatSidenavModule,
+  MatListModule, MatTableModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,6 +17,8 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { ThirdPageComponent } from './third-page/third-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MyTableComponent } from './my-table/my-table.component';
+import { OverlayModule, OverlayContainer, FullscreenOverlayContainer } from '@angular/cdk/overlay';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -31,12 +34,14 @@ const appRoutes: Routes = [
     FirstPageComponent,
     SecondPageComponent,
     ThirdPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    MyTableComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    OverlayModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatInputModule,
@@ -50,8 +55,11 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
-  providers: [],
+  providers: [{ provide: OverlayContainer, useClass: FullscreenOverlayContainer }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
