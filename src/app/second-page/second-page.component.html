@@ -1,3 +1,22 @@
-<p>
-  second-page works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Fire Base Sample Data</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #templateForm="ngForm">
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Please Enter Data" value="" required [(ngModel)]="itemValue" name="item">
+        </mat-form-field>
+      </div>
+      <div class="btn-group">
+        <button type="submit" mat-flat-button [disabled]="templateForm.invalid">Click me!</button>
+      </div>
+    </form>
+
+    <h2>Content from Firebase</h2>
+    <div class="col-md-3">
+      <pre *ngFor="let item of items | async">{{item.content}}</pre>
+    </div>
+  </mat-card-content>
+</mat-card>

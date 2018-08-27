@@ -1,22 +1,25 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Fire Base Sample Data</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Please Enter Data" value="" required [(ngModel)]="itemValue" name="item">
-        </mat-form-field>
-      </div>
-      <div class="btn-group">
-        <button type="submit" mat-flat-button>Click me!</button>
-      </div>
-    </form>
+<p>
+  Home Page
+</p>
 
-    <h2>Content from Firebase</h2>
-    <div class="col-md-3">
-      <pre *ngFor="let item of items | async">{{item.content}}</pre>
-    </div>
-  </mat-card-content>
-</mat-card>
+<pre>
+Async vs. sync
+Reactive forms are synchronous, and template-driven forms are asynchronous.
+
+In reactive forms, you create the entire form control tree in code. 
+You can immediately update a value or drill down through the descendants of the parent form because all 
+controls are always available.
+
+Template-driven forms delegate the creation of their form controls to directives. 
+To avoid changed after checked errors, these directives take more than one cycle to build the entire control tree. 
+That means you must wait until the next change detection cycle happens before manipulating any of the controls from within the component class.
+
+For example, if you inject the form control with a @ViewChild(NgForm) query and examine it in the ngAfterViewInit lifecycle hook, 
+you'll discover that it has no children. 
+You must trigger a change detection cycle using setTimeout() before you can extract a value from a control, 
+test its validity, or set it to a new value.
+
+The asynchrony of template-driven forms also complicates unit testing. 
+You must wrap your test block in async() or fakeAsync() to avoid looking for values in the form that aren't there yet. 
+With reactive forms, everything is available immediately.
+</pre>
