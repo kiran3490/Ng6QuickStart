@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
@@ -24,12 +24,15 @@ import { OverlayModule, OverlayContainer, FullscreenOverlayContainer } from '@an
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
 import { CustomersListComponent } from './customers/customers-list/customers-list.component';
 import { CreateCustomerComponent } from './customers/create-customer/create-customer.component';
+import { WidgetHomeComponentComponent } from './widget-home-component/widget-home-component.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'first-page', component: FirstPageComponent },
   { path: 'second-page', component: SecondPageComponent },
-  { path: 'third-page', component: ThirdPageComponent }
+  { path: 'third-page', component: ThirdPageComponent },
+  { path: 'customer-page', component: CustomersListComponent },
 ];
 
 @NgModule({
@@ -43,13 +46,16 @@ const appRoutes: Routes = [
     MyTableComponent,
     CustomerDetailsComponent,
     CustomersListComponent,
-    CreateCustomerComponent
+    CreateCustomerComponent,
+    WidgetHomeComponentComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     OverlayModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatInputModule,

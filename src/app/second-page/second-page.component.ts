@@ -8,16 +8,26 @@ import { Observable } from 'rxjs';
   styleUrls: ['./second-page.component.scss']
 })
 export class SecondPageComponent implements OnInit {
-  itemValue = '';
-  items: Observable<any[]>;
+  stateValue = '';
+  states: Observable<any[]>;
+
+  cityValue = '';
+  cities: Observable<any[]>;
+  selectedState = null;
 
   constructor(public db: AngularFireDatabase) {
-    this.items = db.list('items').valueChanges();
+    this.states = db.list('states').valueChanges();
+    this.cities = db.list('cities').valueChanges();
   }
 
-  onSubmit() {
-    this.db.list('/items').push({ content: this.itemValue });
-    this.itemValue = '';
+  onStateSubmit() {
+    this.db.list('/states').push({ content: this.stateValue });
+    this.stateValue = '';
+  }
+
+  onCitySubmit() {
+    debugger;
+    
   }
 
   ngOnInit() {

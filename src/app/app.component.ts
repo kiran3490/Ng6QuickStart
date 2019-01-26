@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'Ng6QuickStart';
+  url = '../assets/my-clients.json';
 }
