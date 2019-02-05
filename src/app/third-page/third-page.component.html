@@ -1,3 +1,7 @@
 <p>
-  third-page works!
+  Auto Completete
 </p>
+<div *ngFor="let item of jsonData | async">
+  {{item.name}}
+  <img src={{item.number}} />
+</div>

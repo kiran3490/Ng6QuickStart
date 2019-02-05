@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatInputModule, MatButtonModule, MatSelectModule, MatIconModule,
   MatGridListModule, MatCardModule, MatMenuModule, MatToolbarModule, MatSidenavModule,
-  MatListModule, MatTableModule, MatPaginatorModule, MatSortModule
+  MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatAutocompleteModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -24,6 +24,12 @@ import { OverlayModule, OverlayContainer, FullscreenOverlayContainer } from '@an
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
 import { CustomersListComponent } from './customers/customers-list/customers-list.component';
 import { CreateCustomerComponent } from './customers/create-customer/create-customer.component';
+import { WidgetModule } from 'src/shared/widgets/widgets.module';
+import { AutoCompleteComponent } from 'src/shared/widgets/autocomplete/autocomplete.component';
+import { MockJsonService } from 'src/shared/mock-json-service';
+import { HttpClientModule } from '@angular/common/http';
+import { RollbarErrorHandler, RollbarService } from './rollbar-event-handler';
+import * as Rollbar from 'rollbar';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -31,6 +37,17 @@ const appRoutes: Routes = [
   { path: 'second-page', component: SecondPageComponent },
   { path: 'third-page', component: ThirdPageComponent }
 ];
+
+const rollbarConfig = {
+  accessToken: 'f6dfc7f541fd44d5a0dcb0791daf3739',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+};
+
+
+export function rollbarFactory() {
+    return new Rollbar(rollbarConfig);
+}
 
 @NgModule({
   declarations: [
@@ -48,6 +65,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     OverlayModule,
     RouterModule.forRoot(appRoutes),
@@ -67,9 +85,14 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule, // for database
+    AngularFireDatabaseModule, // for database,
+    WidgetModule
   ],
-  providers: [{ provide: OverlayContainer, useClass: FullscreenOverlayContainer }],
+  providers: [{ provide: OverlayContainer, useClass: FullscreenOverlayContainer },
+    { provide: ErrorHandler, useClass: RollbarErrorHandler },
+    { provide: RollbarService, useFactory: rollbarFactory }
+    , MockJsonService],
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
