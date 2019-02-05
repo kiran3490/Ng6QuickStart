@@ -10,11 +10,11 @@ import { HttpClient } from '@angular/common/http';
 
 export class WidgetHomeComponentComponent implements OnInit, OnChanges {
 
-  @Input() title: string = "Title";
-  @Input() dataApi: string = '';
-  private data = null;
-  private filterData = [] as WidgetData[];
-  private loader = true;
+  @Input() title = 'Title';
+  @Input() dataApi = '';
+  public data = null;
+  public filterData = [] as WidgetData[];
+  public loader = true;
 
 
   constructor(private http: HttpClient) {
