@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import {
@@ -30,12 +30,16 @@ import { MockJsonService } from 'src/shared/mock-json-service';
 import { HttpClientModule } from '@angular/common/http';
 import { RollbarErrorHandler, RollbarService } from './rollbar-event-handler';
 import * as Rollbar from 'rollbar';
+import { WidgetHomeComponentComponent } from './widget-home-component/widget-home-component.component';
+
+
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'first-page', component: FirstPageComponent },
   { path: 'second-page', component: SecondPageComponent },
-  { path: 'third-page', component: ThirdPageComponent }
+  { path: 'third-page', component: ThirdPageComponent },
+  { path: 'customer-page', component: CustomersListComponent },
 ];
 
 const rollbarConfig = {
@@ -60,7 +64,8 @@ export function rollbarFactory() {
     MyTableComponent,
     CustomerDetailsComponent,
     CustomersListComponent,
-    CreateCustomerComponent
+    CreateCustomerComponent,
+    WidgetHomeComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,7 @@ export function rollbarFactory() {
     HttpClientModule,
     FormsModule,
     OverlayModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatInputModule,

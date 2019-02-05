@@ -1,0 +1,41 @@
+<div class="widget-box">
+  <div class="loader" *ngIf="loader"></div>
+  <div class="panel panel-primary" *ngIf="data && !loader">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-4 col-xs-4 title">{{title}}</div>
+        <div class="col-md-4 col-xs-4">
+          <div class="dropdown">
+            <button class="btn dropbtn">
+              Dropdown
+              <span class="caret"></span>
+            </button>
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-4 col-xs-4 pull-right">
+          <div class="input-container">
+            <i class="glyphicon glyphicon-search icon"></i>
+            <input class="input-field" type="text" placeholder="Quick Find" (input)="onSearchChange($event.target.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body custom-scroll">
+      <div class="content-header">Data</div>
+      <div class="content-data" *ngFor="let item of filterData">
+        <div>
+          {{item.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary" class="no-data" *ngIf="!data && !loader">
+    NO DATA TO DISPLAY
+  </div>
+</div>

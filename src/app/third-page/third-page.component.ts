@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MockJsonService } from 'src/shared/mock-json-service';
 import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-third-page',
@@ -10,8 +11,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ThirdPageComponent implements OnInit {
   public jsonData: any;
+  name = new FormControl();
+
   constructor(private jsonService: MockJsonService,
     private http: HttpClient) { }
+
 
   ngOnInit() {
     this.jsonData = this.http.get('../assets/autocomplete.json');

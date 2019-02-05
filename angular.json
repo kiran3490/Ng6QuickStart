@@ -25,13 +25,19 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              { "glob": "autocomplete.json", "input": "src/shared/mockdata", "output": "./assets/" }
+              { "glob": "autocomplete.json", "input": "src/shared/mockdata", "output": "./assets/" },
+              {
+                "glob": "my-clients.json",
+                "input": "src/app/mockdata",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               },
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               {

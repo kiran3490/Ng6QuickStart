@@ -5,3 +5,21 @@
   {{item.name}}
   <img src={{item.number}} />
 </div>
+
+
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <div>
+      <mat-form-field>
+        <input matInput type="text" [formControl]="name">
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <p>
+        Value: {{ name.value }}
+      </p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
